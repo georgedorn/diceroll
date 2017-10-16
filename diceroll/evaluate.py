@@ -1,5 +1,5 @@
 """	The Expression class """
-
+from __future__ import print_function
 from diceroll.components import UnrolledDice, Operator
 
 class Expression (object):
@@ -14,11 +14,11 @@ class Expression (object):
 		
 	def log (self, message, depth=0, **values):
 		"""	Print a message at a set depth """
-		print ("{depth}"+message).format(
+		print( ("{depth}"+message).format(
 			depth   = '  ' * (self.depth + depth),
 			tokens  = self.tokens,
 			**values
-		)
+		) )
 	
 	@staticmethod
 	def single (iterable):
@@ -46,7 +46,7 @@ class Expression (object):
 		
 		self.log("Evaluating the expression: {tokens!r}", depth=-1)
 		# Roll the dice, and evaluate sub-expressions
-		for i in xrange(len(self.tokens)):
+		for i in range(len(self.tokens)):
 			if isinstance(self.tokens[i], Expression):
 				self.tokens[i] = self.tokens[i].evaluate(depth=self.depth+1, **modifiers)
 			elif isinstance(self.tokens[i], UnrolledDice):

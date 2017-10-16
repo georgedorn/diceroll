@@ -46,7 +46,7 @@ class RolledDice (list):
 	
 	def roll (self, n):
 		"""	Roll ``n`` dice and add them to the list """
-		self += [self.rand() for i in xrange(n)]
+		self += [self.rand() for i in range(n)]
 		return self
 	
 	def __str__ (self):
@@ -98,13 +98,13 @@ class Operator (object):
 	
 	@abstractmethod
 	def __call__ (self, *args):
-		raise NotImplementedError, " has not defined a call method".format(self.__class__.__name__)
+		raise NotImplementedError(" has not defined a call method".format(self.__class__.__name__))
 	
 	def require_dice (self, obj, error=None):
 		"""	Raises an error if obj is not a RolledDice instance """
 		error = error or "Cannot call {operator} on {1}, as it is not a RolledDice object "
 		if not isinstance(obj, RolledDice):
-			raise NotImplementedError, error.format(operator=self.__class__.__name__, obj=obj)
+			raise NotImplementedError(error.format(operator=self.__class__.__name__, obj=obj))
 	
 	def __repr__ (self):
 		return '<{0}>'.format(self.__class__.__name__)
@@ -149,7 +149,7 @@ class Explode (Operator):
 	def recursive_explode (self, dice, n):
 		"""	Roll an extra die for each die >= ``n`` """
 		new = list(dice)
-		for i in xrange(self.limit):
+		for i in range(self.limit):
 			new = [dice.rand() for d in new if d >= n]
 			# Return the dice if there are no new dice to try
 			# and explode, or recursive checking is disabled.
@@ -157,7 +157,7 @@ class Explode (Operator):
 				return dice
 			else:
 				dice.extend(new)
-		raise Exception, "I'll be here forever if I explode any more dice."
+		raise Exception("I'll be here forever if I explode any more dice.")
 
 # -------------------------
 # Binary operators

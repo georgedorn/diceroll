@@ -6,7 +6,7 @@ Author: Sam Clements <sam@borntyping.co.uk>
 https://github.com/borntyping/diceroll
 http://pypi.python.org/pypi/diceroll
 """
-
+from __future__ import print_function
 import sys
 
 import pkg_resources
@@ -36,10 +36,11 @@ def command ():
 	try:
 		result = roll(**vars(args))
 		if args.verbose:
-			print "Result:",
-		print result
+			print("Result:", result)
+		else:
+			print(result)
 	except ParseException as exception:
-		print >> sys.stderr, "Parse failed:", exception
+		print("Parse failed:", exception, file=sys.stderr)
 
 if __name__ == '__main__':
 	command()

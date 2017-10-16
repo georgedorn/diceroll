@@ -6,8 +6,8 @@ from pyparsing	import *
 
 ParserElement.enablePackrat()
 
-from evaluate	import Expression
-from components	import *
+from .evaluate import Expression
+from .components import *
 
 # Numbers are evaluated to Number objects
 number = Word(nums).setName("number")
